@@ -1,0 +1,32 @@
+
+//stupid method
+class Solution {
+    public int longestPalindrome(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i =0; i <s.length();i++){
+            char a = s.charAt(i);
+            if (!map.containsKey(a)) map.put(a,1);
+            
+            else map.put(a, map.get(a)+1);
+        }
+        
+        
+        boolean x = false;
+        
+        int total =0;
+     for(int value: map.values()) {
+             if (value%2 ==0){
+                 total = total +value;
+             }else {total = total + value -1;
+                   x = true;}
+         
+     }
+    
+        if (x){
+            total = total+1;
+        }
+        
+    return total;
+        
+    }
+}
