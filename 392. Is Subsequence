@@ -1,0 +1,17 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int swalker =0;
+        
+        if (s.length() ==0){
+            return true;
+        }
+        
+        for (int i=0; i <t.length();i++ ){
+            if (s.charAt(swalker) == t.charAt(i)){
+                if (swalker == s.length()-1) return true;
+                else swalker++;
+            }
+        }
+        return false;
+    }
+}
