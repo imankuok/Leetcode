@@ -1,0 +1,56 @@
+//java hashmap
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        HashMap<Character, Integer> map= new HashMap<>();
+        
+        for (int i =0; i<magazine.length();i++){
+           char a = magazine.charAt(i);
+            if (!map.containsKey(a)) map.put(a, 1);
+            else map.put(a, map.get(a)+1);
+        }
+        
+        for (int j =0; j<ransomNote.length(); j++){
+            char b= ransomNote.charAt(j);
+            if (map.containsKey(b)){
+                if (map.get(b)==0) return false;
+                map.put(b,map.get(b)-1);}
+            else return false;
+            
+        }
+        
+        return true;
+    }
+}
+
+
+// java (using alphabet counter method)
+
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int[] alphabets_counter = new int[26];
+        
+        for (char c : magazine.toCharArray())
+            alphabets_counter[c-'a']++;
+        for (char i:ransomNote.toCharArray()){
+            if (alphabets_counter[i -'a'] >0){
+               alphabets_counter[i-'a']--;}
+                else return false;
+            }
+        
+        return true;
+    }
+}
+
+//python
+class Solution(object):
+    def canConstruct(self, ransomNote, magazine):
+        """
+        :type ransomNote: str
+        :type magazine: str
+        :rtype: bool
+        """
+        
+        return not len(Counter(ransomNote) - Counter(magazine))
+        
+        
+
